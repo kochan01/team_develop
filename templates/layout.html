@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>ECCサイト</title>
+    <meta charset="utf-8">
+    <!-- slick(jQueryプラグイン)の読み込み -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"/>
+    <!-- jQueryの読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="top_of_top"></div>
+    <nav>
+      <li><a href="">nav1</a></li>
+      <li><a href="">商品販売</a></li>
+      <li><a href="">問い合わせ</a></li>
+      <li><a href="">採用情報</a></li>
+      <li><a href="">会社概要</a></li>
+    </nav>
+    <div class="slider">
+      <div><img src="../images/01.jpeg"></div>
+      <div><img src="../images/02.jpeg"></div>
+      <div><img src="../images/03.jpeg"></div>
+    </div>
+    <div class="shares"></div>
+    <!-- slickのjsの読み込み -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <!-- 起動スクリプト -->
+    <script>
+    $('.slider').slick({
+      centerMode: true,
+      centerPadding: '100px',
+      dots:true,
+      focusOnSelect:true,
+    });
+    </script>
+  </body> 
+</html>
