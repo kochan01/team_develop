@@ -3,37 +3,52 @@
   <head>
     <title>ECCサイト</title>
     <meta charset="utf-8">
+
     <!-- slick(jQueryプラグイン)の読み込み -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"/>
     <!-- jQueryの読み込み -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- bootstrapの読み込み -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <style>
+      ul {
+        display: flex;
+        list-style: none;
+      }
+      
+      .slick-prev::before,
+      .slick-next::before {
+        color: black!important;
+      }
+    </style>
   </head>
   <body>
-    <div class="top_of_top"></div>
     <nav>
-      <li><a href="">nav1</a></li>
-      <li><a href="">商品販売</a></li>
-      <li><a href="">問い合わせ</a></li>
-      <li><a href="">採用情報</a></li>
-      <li><a href="">会社概要</a></li>
+      <ul>
+        <li><button type="button" class="btn btn-primary">商品販売</button></li>
+        <li><button type="button" class="btn btn-primary">問い合わせ</button></li>
+        <li><button type="button" class="btn btn-primary">採用情報</button></li>
+        <li><button type="button" class="btn btn-primary">会社概要</button></li>
+      </ul>
     </nav>
+
     <div class="slider">
       <div><img src="../images/01.jpeg"></div>
       <div><img src="../images/02.jpeg"></div>
       <div><img src="../images/03.jpeg"></div>
     </div>
+    
     <div class="shares"></div>
     <!-- slickのjsの読み込み -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <!-- 起動スクリプト -->
     <script>
-    $('.slider').slick({
-      centerMode: true,
-      centerPadding: '100px',
-      dots:true,
-      focusOnSelect:true,
-    });
+      $('.slider').slick({
+        arrows:true,
+        dots:true,
+      });
     </script>
   </body> 
 </html>
