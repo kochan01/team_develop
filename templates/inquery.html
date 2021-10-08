@@ -3,25 +3,28 @@
 {% block title %}Inquery Page{% end block %}
 
 {% block main %}
-    <h1>お問い合わせ　内容入力</h1>
-    <p>お問い合わせ内容をご入力の上、送信ボタンをクリックしてください。</p>
-    <label for="name">お名前</label><button type="button" class="btn btn-danger btn-sm">必須</button>：<input id="name" type="text" name="yourname" placeholder="例）山田太郎"><br>
-    <label for="furigana">ふりがな</label><button type="button" class="btn btn-danger btn-sm">必須</button>：<input id="furigana" type="text" name="furigana" placeholder="例）やまだたろう"><br>
-    <label for="mail">メールアドレス</label><button type="button" class="btn btn-danger btn-sm">必須</button>：<input id="mail" type="email" name="mail" placeholder="例）guest@example.com"><br>
-    <label for="phone">電話番号</label><button type="button" class="btn btn-danger btn-sm">必須</button>：<input id="phone" type="number" name="phone" placeholder="例）00000000000"><br>
-    <label for="gender">性別</label><button type="button" class="btn btn-danger btn-sm">必須</button>：
-    <input id="gender" type="radio" name="gender" value="male"><label for="male">男性</label><input id="female" type="radio" name="gender" value="female"><label for="female">女性</label><br>          
-    <label for="choice">お問合せ項目</label><button type="button" class="btn btn-danger btn-sm">必須</button>：
-    <select name="choice">
-        <option value="recruit">採用</option>
-        <option value="goods">商品</option>
-        <option value="other">その他</option>
-    </select>
-    <br>
-    <label for="contents">お問合せ内容</label><button type="button" class="btn btn-danger btn-sm">必須</button>：
-    <br>
-    <textarea id="contents" name="contents" placeholder="お問合せ内容を入力"></textarea><br>
-    <button type="submit" class="btn btn-primary btn-lg">送信</button>
+    <form action="/inquery" method="post">
+        <h1>お問い合わせ　内容入力</h1>
+        <p>お問い合わせ内容をご入力の上、送信ボタンをクリックしてください。</p>
+        <label for="name">お名前</label><button type="button" class="btn btn-danger btn-sm">必須</button>：<input id="name" type="text" name="yourname" placeholder="例）山田太郎"><br>
+        <label for="furigana">ふりがな</label><button type="button" class="btn btn-danger btn-sm">必須</button>：<input id="furigana" type="text" name="furigana" placeholder="例）やまだたろう"><br>
+        <label for="mail">メールアドレス</label><button type="button" class="btn btn-danger btn-sm">必須</button>：<input id="mail" type="email" name="mail" placeholder="例）guest@example.com"><br>
+        <label for="phone">電話番号</label><button type="button" class="btn btn-danger btn-sm">必須</button>：<input id="phone" type="number" name="phone" placeholder="例）00000000000"><br>
+        <label for="gender">性別</label><button type="button" class="btn btn-danger btn-sm">必須</button>：
+        <input id="gender" type="radio" name="gender" value="男性"><label for="male">男性</label><input id="female" type="radio" name="gender" value="女性"><label for="female">女性</label><input id="other" type="radio" name="gender" value="その他"><label for="other">その他</label><br>          
+        <label for="choice">お問合せ項目</label><button type="button" class="btn btn-danger btn-sm">必須</button>：
+        <select id="choice" name="choice">
+            <option value="採用">採用</option>
+            <option value="商品">商品</option>
+            <option value="その他">その他</option>
+        </select>
+        <br>
+        <label for="contents">お問合せ内容</label><button type="button" class="btn btn-danger btn-sm">必須</button>：
+        <br>
+        <textarea id="contents" name="contents" placeholder="お問合せ内容を入力"></textarea><br>
+        <button type="submit" class="btn btn-primary btn-lg">送信</button>
+    </form>
+    
 {% endblock %}
 
 
