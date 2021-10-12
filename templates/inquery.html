@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}Inquery Page{% end block %}
+{% block title %}Inquery Page{% endblock %}
 
 {% block main %}
     <form action="/inquery" method="post">
@@ -9,7 +9,7 @@
         <label for="name">お名前</label><button type="button" class="btn btn-danger btn-sm">必須</button>：<input id="name" type="text" name="yourname" placeholder="例）山田太郎"><br>
         <label for="furigana">ふりがな</label><button type="button" class="btn btn-danger btn-sm">必須</button>：<input id="furigana" type="text" name="furigana" placeholder="例）やまだたろう"><br>
         <label for="mail">メールアドレス</label><button type="button" class="btn btn-danger btn-sm">必須</button>：<input id="mail" type="email" name="mail" placeholder="例）guest@example.com"><br>
-        <label for="phone">電話番号</label><button type="button" class="btn btn-danger btn-sm">必須</button>：<input id="phone" type="number" name="phone" placeholder="例）00000000000"><br>
+        <label for="phone">電話番号</label><button type="button" class="btn btn-danger btn-sm">必須</button>：<input id="phone" type="tel" name="phone" placeholder="例）00000000000"><br>
         <label for="gender">性別</label><button type="button" class="btn btn-danger btn-sm">必須</button>：
         <input id="gender" type="radio" name="gender" value="男性"><label for="male">男性</label><input id="female" type="radio" name="gender" value="女性"><label for="female">女性</label><input id="other" type="radio" name="gender" value="その他"><label for="other">その他</label><br>          
         <label for="choice">お問合せ項目</label><button type="button" class="btn btn-danger btn-sm">必須</button>：
