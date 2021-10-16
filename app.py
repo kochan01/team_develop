@@ -31,7 +31,7 @@ api = tweepy.API(auth)
 
 @app.route("/")
 def index():
-  tweets = api.search_tweets(q="#スマブラ", count=10)
+  tweets = api.search_tweets(q="#デザイン", count=10)
   return render_template("index.html", tweets=tweets)
 
 @app.route("/inquery", methods=["GET", "POST"])
