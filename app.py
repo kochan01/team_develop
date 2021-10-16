@@ -10,8 +10,10 @@ dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
 app = Flask(__name__, static_folder='./templates/images')
+app.config['DEBUG'] = True# デバッグモードをTrueにする
+app.config['SECRET_KEY'] = 'top-secret!'
 app.config['MAIL_SERVER'] = 'smtp.sendgrid.net'
-app.config['MAIL_PORT'] = 25
+app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = 'apikey'
 app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
@@ -37,11 +39,30 @@ def index():
 @app.route("/inquery", methods=["GET", "POST"])
 def inquery():
   if request.method == "POST":
+    name = request.form.get('yourname')
+    furigana = request.form.get('furigana')
     recipient = request.form.get('mail')
+    phone = request.form.get('phone')
+    gender = request.form.get('gender')
+    choice = request.form.get('choice')
+    contents = request.form.get('contents')
     msgr = Message('問い合わせ送信完了しました！', recipients=[recipient])
     msgr.body = ('お問合せ内容確認')
-    msgr.html = ('<h1>問い合わせ送信完了しました！</h1>')
+    message = ('<p>名前：{0}</p>'
+              '<p>ふりがな：{1}</p>'
+              '<p>メールアドレス：{2}</p>'
+              '<p>電話番号：{3}</p>'
+              '<p>性別：{4}</p>'
+              '<p>問い合わせ項目：{5}</p>'
+              '<p>問い合わせ内容：{6}</p>'
+              .format(name, furigana, recipient, phone, gender, choice, contents))
+    msgr.html = message
+    flash('送信完了しました！')
     mail.send(msgr)
+    msg_s = Message('問い合わせ到着', recipients=[os.environ.get('MAIL_DEFAULT_SENDER')])
+    msg_s.body = ('お問合せ内容')
+    msg_s.html = message
+    mail.send(msg_s)
     return redirect("/")
 
   else:
