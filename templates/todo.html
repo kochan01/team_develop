@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}Todo Page{% endblock %}
+
+
+{% block main %}
+<div class="form">
+    <form action="/home" method="POST">
+        <label for="title">Title</label>
+        <input type="text" name="title">
+        <label for="detail">Detail</label>
+        <input type="text" name="detail">
+        <label for="due">Due</label>
+        <input type="date" name="due" required>
+        <input type="submit" value="Create">
+    </form>
+</div>    
+{% endblock %}
+
+
+ 
+
+ 
