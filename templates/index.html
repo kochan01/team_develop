@@ -111,6 +111,18 @@
   </style>
 {% endblock %}
 
+{% block flash %}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class=flashes>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+{% endblock %}
+
 {% block main %}
   <div class="slider">
     <div><img src="images/01.jpeg"></div>
