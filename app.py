@@ -36,11 +36,10 @@ CONSUMER_SECRET = tw_key.twdict['cons_sec']
 ACCESS_TOKEN_KEY = tw_key.twdict['accto_key']
 ACCESS_TOKEN_SECRET = tw_key.twdict['accto_sec']
 
-callback_url="http://127.0.0.1:5000/auth"
+callback_url="https://mighty-thicket-70693.herokuapp.com/auth"
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET, callback_url)
 auth.set_access_token(ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
-#ここから追加
 redirect_url = auth.get_authorization_url()
 
 
