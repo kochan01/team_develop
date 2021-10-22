@@ -59,7 +59,8 @@ def tweet():
   auth.get_access_token(oauth_verifier)
   auth.set_access_token(auth.access_token,auth.access_token_secret)
   api = tweepy.API(auth)
-  api.update_status("最高のページだね！ #デザイン")
+  api.update_status("最高のページだね！https://mighty-thicket-70693.herokuapp.com/ #デザイン")
+  flash("Twitterで共有しました！")
 
   return redirect("/")
 
