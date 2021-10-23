@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
 from os.path import join, dirname
 from dotenv import load_dotenv
+from flask_httpauth import HTTPDigestAuth
 
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
@@ -23,6 +24,7 @@ app.config['MAIL_USERNAME'] = 'apikey'
 app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
 app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_DEFAULT_SENDER')
 mail = Mail(app)
+admin = HTTPDigestAuth()
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -42,6 +44,10 @@ auth.set_access_token(ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
 redirect_url = auth.get_authorization_url()
 
+#"id":"パスワード" 管理機能へのアクセス認証
+id_list = {
+    "admin": "root"
+}
 
 
 @app.route("/")
@@ -107,6 +113,7 @@ def recruit():
   return render_template("recruit.html")
 
 @app.route("/home", methods=["GET","POST"])
+@admin.login_required
 def home():
   if request.method == "POST":
     title = request.form.get("title")
@@ -125,6 +132,7 @@ def home():
     return render_template('home.html', posts=posts)
 
 @app.route("/todo")
+@admin.login_required
 def todo():
   return render_template('todo.html')
 
