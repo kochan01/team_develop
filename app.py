@@ -38,9 +38,11 @@ CONSUMER_SECRET = tw_key.twdict['cons_sec']
 ACCESS_TOKEN_KEY = tw_key.twdict['accto_key']
 ACCESS_TOKEN_SECRET = tw_key.twdict['accto_sec']
 
-auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+callback_url="https://mighty-thicket-70693.herokuapp.com/auth"
+auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET, callback_url)
 auth.set_access_token(ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
+redirect_url = auth.get_authorization_url()
 
 #"id":"パスワード" 管理機能へのアクセス認証
 id_list = {
@@ -56,7 +58,22 @@ def get_pw(id):
 @app.route("/")
 def index():
   tweets = api.search_tweets(q="#デザイン", count=10)
-  return render_template("index.html", tweets=tweets)
+  return render_template("index.html", tweets=tweets, redirect_url=redirect_url)
+
+@app.route("/auth")
+def tweet():
+  auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET, callback_url)
+  oauth_token = request.args.get('oauth_token',default=' ',type=str)
+  oauth_verifier = request.args.get('oauth_verifier',default=' ',type=str)
+  auth.request_token['oauth_token'] = oauth_token
+  auth.request_token['oauth_token_secret'] = oauth_verifier
+  auth.get_access_token(oauth_verifier)
+  auth.set_access_token(auth.access_token,auth.access_token_secret)
+  api = tweepy.API(auth)
+  api.update_status("最高のページだね！https://mighty-thicket-70693.herokuapp.com/ #デザイン")
+  flash("Twitterで共有しました！")
+
+  return redirect("/")
 
 @app.route("/inquery", methods=["GET", "POST"])
 def inquery():
