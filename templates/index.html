@@ -111,6 +111,18 @@
   </style>
 {% endblock %}
 
+{% block flash %}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class=flashes>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+{% endblock %}
+
 {% block main %}
   <div class="slider">
     <div><img src="images/01.jpeg"></div>
@@ -121,6 +133,7 @@
   <div class="shares">
     <div class="shares_title">
       <h2>お客様の声</h2>
+      <a href={{ redirect_url }}>Twitterでこのページを共有</a>
     </div>
     {% for tweet in tweets %}
       <div class="talk">
