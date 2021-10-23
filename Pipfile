@@ -24,6 +24,7 @@ Jinja2 = "==3.0.1"
 MarkupSafe = "==2.0.1"
 SQLAlchemy = "==1.4.25"
 Werkzeug = "==2.0.1"
+Flask-HTTPAuth = "==4.4.0"
 
 [dev-packages]
 
